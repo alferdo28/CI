@@ -4,40 +4,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Halaman Berita</title>
+  <title>Halaman Pengguna</title>
   <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>">
 </head>
 
 <body>
-  <h5><?php echo $judul; ?></h5>
-  <ul>
-    <li><?php echo $isi; ?></li>
-  </ul>
-  <div class="container">
-    <a class="btn btn-info" href="<?php echo base_url('berita/addBerita'); ?>">Tambah Berita</a>
+  <div class="container" style="margin-top: 50px;">
+    <a class="btn btn-info" href="<?php echo base_url('user/addUser'); ?>">Tambah Pengguna</a>
     <br><br>
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-12">
         <table class="table table-bordered table-hover">
           <thead>
             <tr>
               <th>Id</th>
-              <th>Judul</th>
-              <th>Pembaca</th>
+              <th>Nama Pengguna</th>
+              <th>Email</th>
+              <th>Alamat</th>
+              <th>Nomor HP</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <?php
-            foreach ($berita->result() as $row) {
+            foreach ($user->result() as $row) {
             ?>
               <tr>
                 <td><?php echo $row->id ?></td>
-                <td><?php echo $row->judul ?></td>
-                <td><?php echo $row->pembaca ?></td>
+                <td><?php echo $row->nama ?></td>
+                <td><?php echo $row->email ?></td>
+                <td><?php echo $row->alamat ?></td>
+                <td><?php echo $row->no_hp ?></td>
                 <td>
-                  <a href="<?php echo base_url('berita/getBerita/'.$row->id); ?>" class="btn btn-warning">Update</a>
-                  <a href="<?php echo base_url('berita/delete/'.$row->id); ?>" class="btn btn-danger">Delete</a>
+                  <a href="<?php echo base_url('user/getUser/'.$row->id); ?>" class="btn btn-warning">Update</a>
+                  <a href="<?php echo base_url('user/delete/'.$row->id); ?>" class="btn btn-danger">Delete</a>
                 </td>
               </tr>
             <?php }
