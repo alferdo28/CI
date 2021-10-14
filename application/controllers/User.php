@@ -9,12 +9,17 @@ class User extends CI_Controller
     {
         parent::__construct();
         $this->load->model('user_model');
+        if (!$this->session->userdata('auth')) {
+            $this->session->set_flashdata('message', 'Anda tidak berhak mengakses halaman ini');
+            redirect('auth');
+        }
     }
     
     public function index()
     {
-      $data['user'] = $this->user_model->getUser();
-      $this->load->view('user_view', $data);
+            $data['user'] = $this->user_model->getUser();
+            $this->load->view('user_view', $data);
+      
     }
     
     function addUser(){
@@ -56,8 +61,14 @@ class User extends CI_Controller
         $email = $this->input->post('email');
         $alamat = $this->input->post('alamat');
         $nomor_hp = $this->input->post('nomor_hp');
-        $password = md5($this->input->post('password'));
-        $this->user_model->updateUser($user_id, $nama, $email, $alamat, $nomor_hp, $password);
+        $password1 = $this->input->post('password1');
+        $password = $this->input->post('password');
+        if ($password == '') {
+            $this->user_model->updateUser($user_id, $nama, $email, $alamat, $nomor_hp, $password1);
+        }else{
+            $password = md5($password);
+            $this->user_model->updateUser($user_id, $nama, $email, $alamat, $nomor_hp, $password);
+        }
         redirect('user');
     }
 
@@ -66,6 +77,7 @@ class User extends CI_Controller
         $this->user_model->delete($user_id);
         redirect('user');
     }
+
 }
 
 /* End of file filename.php */

@@ -20,11 +20,16 @@ class User_model extends CI_Model
         $this->db->insert('pengguna', $data);
     }
 
-    function getUserId($user_id){
+    function getUserId($user_id){        
         $query = $this->db->get_where('pengguna', array('id' => $user_id));
         return $query;
     }
 
+    function userLogin($email){
+        $this->db->where('email', $email);
+        $result = $this->db->get('pengguna')->row();
+        return $result;
+    }
     function updateUser($user_id, $nama, $alamat, $email, $nomor_hp, $password){
         $data = array(
             'nama' => $nama,
@@ -41,6 +46,7 @@ class User_model extends CI_Model
         $this->db->where('id', $user_id);
         $this->db->delete('pengguna');
     }
+
 }
 
 

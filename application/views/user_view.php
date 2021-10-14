@@ -11,6 +11,8 @@
 <body>
   <div class="container" style="margin-top: 50px;">
     <a class="btn btn-info" href="<?php echo base_url('user/addUser'); ?>">Tambah Pengguna</a>
+    <br>
+    <a class="btn btn-warning" href="<?php echo base_url('auth/logout'); ?>">Logout</a>
     <br><br>
     <div class="row">
       <div class="col-md-12">
@@ -36,8 +38,8 @@
                 <td><?php echo $row->alamat ?></td>
                 <td><?php echo $row->no_hp ?></td>
                 <td>
-                  <a href="<?php echo base_url('user/getUser/'.$row->id); ?>" class="btn btn-warning">Update</a>
-                  <a href="<?php echo base_url('user/delete/'.$row->id); ?>" class="btn btn-danger">Delete</a>
+                  <a href="<?php echo base_url('user/getUser/' . $row->id); ?>" class="btn btn-warning">Update</a>
+                  <a href="<?php echo base_url('user/delete/' . $row->id); ?>" class="btn btn-danger">Delete</a>
                 </td>
               </tr>
             <?php }
